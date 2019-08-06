@@ -45,8 +45,17 @@ name varchar(100), kontor varchar(100), address varchar(100), contact varchar(10
 
 
 insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'KUNGSGATAN');
+insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'JÄRFÄLLA');
+insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'UPPLANDSVÄSBY');
+
+insert into seller(name,address, contact, tel, kontor) values('IKEA','STOCKHOLM','Hanna Petesson', '08-88181', 'SKÄRHOLMEN');
+insert into seller(name,address, contact, tel, kontor) values('IKEA','STOCKHOLM','Hanna Petesson', '08-28771', 'JÄRFÄLLA');
+
 insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'NACKA');
 insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','GOTEBORG','Karin Ericsson', '031-1817619','CENTRAL');
+
+insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','GOTEBORG','Karin Ericsson', '031-1817619','ANGERED');
+
 insert into seller(name,address, contact, tel, kontor) values('MEDIA MARKET','STOCKHOLM','Pelle Svensson', '070-17716141', 'NACKA');
 insert into seller(name,address, contact, tel, kontor) values('VOLVO','STOCKHOLM','Kalle Svensson', '073-345678', 'UPPLANDSVÄSBY');
 
@@ -105,7 +114,5 @@ insert into gods_category(name) values( 'VITVAROR');
 create table reports( id int primary key auto_increment, receiver varchar(50), 
 created date DEFAULT current_timestamp(), report_desc varchar(256), about_owner char(1) , about_gods char(1), answer varchar(256));
  
-
-
 
 
