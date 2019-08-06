@@ -1,7 +1,17 @@
+create table gods_status( name varchar(10) primary key);
+insert into gods_status(name) values('NEW_SOLD');
+insert into gods_status(name) values('FORLORAD');
+insert into gods_status(name) values('STOLEN');
+insert into gods_status(name) values('HITTAT');
+insert into gods_status(name) values('BESLAGET');
+
+/**********************/
+
 create table gods( id int  primary key auto_increment, serial_no varchar(100), name varchar(100), 
 manufacture_date date, manfacture_country varchar(100), model varchar(100),
  category varchar(100), image blob, create_date date DEFAULT current_timestamp(), update_date date DEFAULT current_timestamp(), seller_id int, status varchar(10) default 'NEW_SOLD',
  CONSTRAINT `status_fk` FOREIGN KEY (`status`) REFERENCES `gods_status` (`name`) 
+
  );
  
 
@@ -26,12 +36,10 @@ insert into seller(name,address, contact, tel) values('VOLVO','STOCKHOLM','Kalle
 /**********************/
 
 
-create table gods_status( name varchar(10) primary key);
-insert into gods_status(name) values('NEW_SOLD');
-insert into gods_status(name) values('FORLORAD');
-insert into gods_status(name) values('STOLEN');
-insert into gods_status(name) values('HITTAT');
-insert into gods_status(name) values('BESLAGET');
+create table insurance_company(id int  primary key auto_increment, country varchar(36), address varchar(100), name varchar(100), rabatt int);
+insert into insurance_company(name, country,address, rabatt) values('FOLKSAM','SVERIGE', 'STOCKHOLM',50);
+insert into insurance_company(name, country,address, rabatt) values('IF','SVERIGE', 'STOCKHOLM',50);
+insert into insurance_company(name, country,address, rabatt) values('TRUGGHANSA','SVERIGE', 'STOCKHOLM',50);
 
 /**********************/
 
@@ -40,7 +48,8 @@ insert into gods_status(name) values('BESLAGET');
 create table policy_gods(id int primary key auto_increment , gods_id int, 
 serial_no varchar(100), insurance_company int,
  start_date date, finish_date date, number_of_year int,
- CONSTRAINT `object_fk` FOREIGN KEY (`gods_id`) REFERENCES `gods` (`id`) 
+ CONSTRAINT `object_fk` FOREIGN KEY (`gods_id`) REFERENCES `gods` (`id`) ,
+  CONSTRAINT `insurcompany_fk` FOREIGN KEY (`insurance_company`) REFERENCES `insurance_company` (`id`) 
  );
 
 insert into policy_gods(gods_id,serial_no,insurance_company,start_date,number_of_year)
@@ -50,21 +59,21 @@ values(1,'1661-HHAF01-IM5551181-HHYYY&6',1,'2019-10-01', 2);
 
 
 
-create table insurance_company(id int  primary key auto_increment, country varchar(36), address varchar(100), name varchar(100), rabatt int);
-insert into insurance_company(name, country,address, rabatt) values('FOLKSAM','SVERIGE', 'STOCKHOLM',50);
-insert into insurance_company(name, country,address, rabatt) values('IF','SVERIGE', 'STOCKHOLM',50);
-insert into insurance_company(name, country,address, rabatt) values('TRUGGHANSA','SVERIGE', 'STOCKHOLM',50);
-
-/**********************/
 
 
-create table search_history(object_id int, 
-user_name varchar(100), search_Date date, user_ipadress varchar(20), user_country varchar(100), search_words varchar(200));
+
+create table search_history(gods_id int, 
+user_name varchar(100), search_Date date, user_ipadress varchar(20), 
+user_country varchar(100), search_words varchar(200),
+CONSTRAINT `godsidsearch_fk` FOREIGN KEY (`gods_id`) REFERENCES `gods` (`id`)
+);
 
 /**********************/
 
 create table anmald(id int  primary key auto_increment, authorny_name varchar(100), gods_id int, contact_name varchar(100), 
-contact_adress varchar(100), anmald_date date, description varchar(100));
+contact_adress varchar(100), anmald_date date, description varchar(100),
+CONSTRAINT `godsidanmald_fk` FOREIGN KEY (`gods_id`) REFERENCES `gods` (`id`)
+);
 
 /**************************/
 
