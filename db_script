@@ -55,10 +55,18 @@ insert into seller(name,address, contact, tel) values('VOLVO','STOCKHOLM','Kalle
 
 
 
+create table insurance_company(id int  primary key auto_increment, country varchar(36), address varchar(100), name varchar(100), rabatt int);
+insert into insurance_company(name, country,address, rabatt) values('FOLKSAM','SVERIGE', 'STOCKHOLM',50);
+insert into insurance_company(name, country,address, rabatt) values('IF','SVERIGE', 'STOCKHOLM',50);
+insert into insurance_company(name, country,address, rabatt) values('TRUGGHANSA','SVERIGE', 'STOCKHOLM',50);
+
+/**********************/
+
 create table policy_gods(id int primary key auto_increment , gods_id int, 
 serial_no varchar(100), insurance_company int,
  start_date date, finish_date date, number_of_year int,
- CONSTRAINT `object_fk` FOREIGN KEY (`gods_id`) REFERENCES `gods` (`id`) 
+ CONSTRAINT `godsObj_fk` FOREIGN KEY (`gods_id`) REFERENCES `gods` (`id`) ,
+ CONSTRAINT `insurcompany_fk` FOREIGN KEY (`insurance_company`) REFERENCES `insurance_company` (`id`) 
  );
 
 insert into policy_gods(gods_id,serial_no,insurance_company,start_date,number_of_year)
@@ -68,12 +76,6 @@ values(1,'1661-HHAF01-IM5551181-HHYYY&6',1,'2019-10-01', 2);
 
 
 
-create table insurance_company(id int  primary key auto_increment, country varchar(36), address varchar(100), name varchar(100), rabatt int);
-insert into insurance_company(name, country,address, rabatt) values('FOLKSAM','SVERIGE', 'STOCKHOLM',50);
-insert into insurance_company(name, country,address, rabatt) values('IF','SVERIGE', 'STOCKHOLM',50);
-insert into insurance_company(name, country,address, rabatt) values('TRUGGHANSA','SVERIGE', 'STOCKHOLM',50);
-
-/**********************/
 
 
 create table search_history(object_id int, 
@@ -97,5 +99,7 @@ insert into gods_category(name) values( 'MOTOR');
 insert into gods_category(name) values( 'VITVAROR');
 
 /**********************/
+
+
 
 
