@@ -40,13 +40,15 @@ values('1661-JAFGAF441-KAN66-99171KL','BÅT', '2018-07-01','SE', 'S14',3,4);
 
 
 create table seller(id int primary key auto_increment, 
-name varchar(100), address varchar(100), contact varchar(100),tel varchar(20), create_date date, update_date date);
+name varchar(100), kontor varchar(100), address varchar(100), contact varchar(100),tel varchar(20), create_date date DEFAULT current_timestamp(),
+ update_date date DEFAULT current_timestamp());
 
 
-insert into seller(name,address, contact, tel) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615');
-insert into seller(name,address, contact, tel) values('ELGIGANTEN','GOTEBORG','Karin Ericsson', '031-1817619');
-insert into seller(name,address, contact, tel) values('MEDIA MARKET','STOCKHOLM','Pelle Svensson', '070-17716141');
-insert into seller(name,address, contact, tel) values('VOLVO','STOCKHOLM','Kalle Svensson', '073-345678');
+insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'KUNGSGATAN');
+insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'NACKA');
+insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','GOTEBORG','Karin Ericsson', '031-1817619','CENTRAL');
+insert into seller(name,address, contact, tel, kontor) values('MEDIA MARKET','STOCKHOLM','Pelle Svensson', '070-17716141', 'NACKA');
+insert into seller(name,address, contact, tel, kontor) values('VOLVO','STOCKHOLM','Kalle Svensson', '073-345678', 'UPPLANDSVÄSBY');
 
 /**********************/
 
@@ -79,7 +81,7 @@ values(1,'1661-HHAF01-IM5551181-HHYYY&6',1,'2019-10-01', 2);
 
 
 create table search_history(object_id int, 
-user_name varchar(100), search_Date date, user_ipadress varchar(20), user_country varchar(100), search_words varchar(200));
+user_name varchar(100), search_Date date DEFAULT current_timestamp(), user_ipadress varchar(20), user_country varchar(100), search_words varchar(200));
 
 /**********************/
 
@@ -99,6 +101,10 @@ insert into gods_category(name) values( 'MOTOR');
 insert into gods_category(name) values( 'VITVAROR');
 
 /**********************/
+
+create table reports( id int primary key auto_increment, receiver varchar(50), 
+created date DEFAULT current_timestamp(), report_desc varchar(256), about_owner char(1) , about_gods char(1), answer varchar(256));
+ 
 
 
 
