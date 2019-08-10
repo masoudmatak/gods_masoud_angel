@@ -146,6 +146,22 @@ insert into gods_attribute(color, weight_kg,size, brand,belongto) values('WHITE'
 
 create table gods_reports( id int primary key auto_increment, receiver varchar(50), 
 created datetime DEFAULT current_timestamp(), report_desc varchar(256), about_owner char(1) , about_gods char(1), answer varchar(256));
- 
+
+
+
+/***************************************delete*******************************/
+drop table gods_anmald cascade;
+drop table gods_attribute cascade;
+drop table gods_policy cascade;
+drop table gods_insurancecompany cascade;
+drop table gods_reports cascade;
+drop table gods_undergategory cascade;
+drop table gods_searchhistory cascade;
+drop table gods_seller cascade;
+drop table gods_category cascade;
+drop table gods cascade;
+drop table gods_status cascade;
+drop table gods_owner cascade;
+/***********************************************/
 
  
