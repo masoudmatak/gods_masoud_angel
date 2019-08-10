@@ -7,22 +7,22 @@ insert into gods_status(name) values('BESLAGET');
 
 /**********************/
 
-create table owner(id int primary key auto_increment, personnummer varchar(12), 
+create table gods_owner(id int primary key auto_increment, personnummer varchar(12), 
 address varchar(100), country varchar(20) default 'SE', tel varchar(20), name varchar(50), surname varchar(50));
 
-insert into owner(personnummer,address,  name, surname) values('195905013045','Tegelviksgatan 34','Hamid','Karlsson');
+insert into gods_owner(personnummer,address,  name, surname) values('195905013045','Tegelviksgatan 34','Hamid','Karlsson');
 
-insert into owner(address,  name, surname) values('Kungsgatan 34','kalle','Person');
+insert into gods_owner(address,  name, surname) values('Kungsgatan 34','kalle','Person');
 
 /****************************/
 
 create table gods( id int  primary key auto_increment, serial_no varchar(100), name varchar(100), 
-manufacture_date date, manfacture_country varchar(100), model varchar(100),
- category varchar(100), image blob, create_date date DEFAULT current_timestamp(), 
- update_date date DEFAULT current_timestamp(), seller_id int, status varchar(10) default 'NEW_SOLD',
+manufacture_date datetime, manfacture_country varchar(100), model varchar(100),
+ category varchar(100), image blob, create_date datetime DEFAULT current_timestamp(), 
+ update_date datetime DEFAULT current_timestamp(), seller_id int, status varchar(10) default 'NEW_SOLD',
  ownerid int,
  publish varchar(1) default 'Y',
- CONSTRAINT `owner_fk` FOREIGN KEY (`ownerid`) REFERENCES `owner` (`id`) ,
+ CONSTRAINT `owner_fk` FOREIGN KEY (`ownerid`) REFERENCES `gods_owner` (`id`) ,
  CONSTRAINT `status_fk` FOREIGN KEY (`status`) REFERENCES `gods_status` (`name`) 
  );
  
@@ -39,48 +39,48 @@ values('1661-JAFGAF441-KAN66-99171KL','BÅT', '2018-07-01','SE', 'S14',3,4);
 
 
 
-create table seller(id int primary key auto_increment, 
-name varchar(100), kontor varchar(100), address varchar(100), contact varchar(100),tel varchar(20), create_date date DEFAULT current_timestamp(),
- update_date date DEFAULT current_timestamp());
+create table gods_seller(id int primary key auto_increment, 
+name varchar(100), kontor varchar(100), address varchar(100), contact varchar(100),tel varchar(20), create_date datetime DEFAULT current_timestamp(),
+ update_date datetime DEFAULT current_timestamp());
 
 
-insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'KUNGSGATAN');
-insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'JÄRFÄLLA');
-insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'UPPLANDSVÄSBY');
+insert into gods_seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'KUNGSGATAN');
+insert into gods_seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'JÄRFÄLLA');
+insert into gods_seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'UPPLANDSVÄSBY');
 
-insert into seller(name,address, contact, tel, kontor) values('IKEA','STOCKHOLM','Hanna Petesson', '08-88181', 'SKÄRHOLMEN');
-insert into seller(name,address, contact, tel, kontor) values('IKEA','STOCKHOLM','Hanna Petesson', '08-28771', 'JÄRFÄLLA');
+insert into gods_seller(name,address, contact, tel, kontor) values('IKEA','STOCKHOLM','Hanna Petesson', '08-88181', 'SKÄRHOLMEN');
+insert into gods_seller(name,address, contact, tel, kontor) values('IKEA','STOCKHOLM','Hanna Petesson', '08-28771', 'JÄRFÄLLA');
 
-insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'NACKA');
-insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','GOTEBORG','Karin Ericsson', '031-1817619','CENTRAL');
+insert into gods_seller(name,address, contact, tel, kontor) values('ELGIGANTEN','STOCKHOLM','Martin Persson', '08-138817615', 'NACKA');
+insert into gods_seller(name,address, contact, tel, kontor) values('ELGIGANTEN','GOTEBORG','Karin Ericsson', '031-1817619','CENTRAL');
 
-insert into seller(name,address, contact, tel, kontor) values('ELGIGANTEN','GOTEBORG','Karin Ericsson', '031-1817619','ANGERED');
+insert into gods_seller(name,address, contact, tel, kontor) values('ELGIGANTEN','GOTEBORG','Karin Ericsson', '031-1817619','ANGERED');
 
-insert into seller(name,address, contact, tel, kontor) values('MEDIA MARKET','STOCKHOLM','Pelle Svensson', '070-17716141', 'NACKA');
-insert into seller(name,address, contact, tel, kontor) values('VOLVO','STOCKHOLM','Kalle Svensson', '073-345678', 'UPPLANDSVÄSBY');
-
-/**********************/
-
-
-
-
-
-
-create table insurance_company(id int  primary key auto_increment, country varchar(36), address varchar(100), name varchar(100), rabatt int);
-insert into insurance_company(name, country,address, rabatt) values('FOLKSAM','SVERIGE', 'STOCKHOLM',50);
-insert into insurance_company(name, country,address, rabatt) values('IF','SVERIGE', 'STOCKHOLM',50);
-insert into insurance_company(name, country,address, rabatt) values('TRUGGHANSA','SVERIGE', 'STOCKHOLM',50);
+insert into gods_seller(name,address, contact, tel, kontor) values('MEDIA MARKET','STOCKHOLM','Pelle Svensson', '070-17716141', 'NACKA');
+insert into gods_seller(name,address, contact, tel, kontor) values('VOLVO','STOCKHOLM','Kalle Svensson', '073-345678', 'UPPLANDSVÄSBY');
 
 /**********************/
 
-create table policy_gods(id int primary key auto_increment , gods_id int, 
+
+
+
+
+
+create table gods_insurancecompany(id int  primary key auto_increment, country varchar(36), address varchar(100), name varchar(100), rabatt int);
+insert into gods_insurancecompany(name, country,address, rabatt) values('FOLKSAM','SVERIGE', 'STOCKHOLM',50);
+insert into gods_insurancecompany(name, country,address, rabatt) values('IF','SVERIGE', 'STOCKHOLM',50);
+insert into gods_insurancecompany(name, country,address, rabatt) values('TRUGGHANSA','SVERIGE', 'STOCKHOLM',50);
+
+/**********************/
+
+create table gods_policy(id int primary key auto_increment , gods_id int, 
 serial_no varchar(100), insurance_company int,
- start_date date, finish_date date, number_of_year int,
+ start_date datetime, finish_date datetime, number_of_year int,
  CONSTRAINT `godsObj_fk` FOREIGN KEY (`gods_id`) REFERENCES `gods` (`id`) ,
- CONSTRAINT `insurcompany_fk` FOREIGN KEY (`insurance_company`) REFERENCES `insurance_company` (`id`) 
+ CONSTRAINT `insurcompany_fk` FOREIGN KEY (`insurance_company`) REFERENCES `gods_insurancecompany` (`id`) 
  );
 
-insert into policy_gods(gods_id,serial_no,insurance_company,start_date,number_of_year)
+insert into gods_policy(gods_id,serial_no,insurance_company,start_date,number_of_year)
 values(1,'1661-HHAF01-IM5551181-HHYYY&6',1,'2019-10-01', 2);
 
 /**********************/
@@ -89,13 +89,13 @@ values(1,'1661-HHAF01-IM5551181-HHYYY&6',1,'2019-10-01', 2);
 
 
 
-create table search_history(object_id int, 
-user_name varchar(100), search_Date date DEFAULT current_timestamp(), user_ipadress varchar(20), user_country varchar(100), search_words varchar(200));
+create table gods_searchhistory(object_id int, 
+user_name varchar(100), search_Date datetime DEFAULT current_timestamp(), user_ipadress varchar(20), user_country varchar(100), search_words varchar(200));
 
 /**********************/
 
-create table anmald(id int  primary key auto_increment, authorny_name varchar(100), gods_id int, contact_name varchar(100), 
-contact_adress varchar(100), anmald_date date, description varchar(100));
+create table gods_anmald(id int  primary key auto_increment, authorny_name varchar(100), gods_id int, contact_name varchar(100), 
+contact_adress varchar(100), anmald_date datetime, description varchar(100));
 
 /**************************/
 
@@ -111,8 +111,8 @@ insert into gods_category(name) values( 'VITVAROR');
 
 /**********************/
 
-create table reports( id int primary key auto_increment, receiver varchar(50), 
-created date DEFAULT current_timestamp(), report_desc varchar(256), about_owner char(1) , about_gods char(1), answer varchar(256));
+create table gods_reports( id int primary key auto_increment, receiver varchar(50), 
+created datetime DEFAULT current_timestamp(), report_desc varchar(256), about_owner char(1) , about_gods char(1), answer varchar(256));
  
 
-
+ 
