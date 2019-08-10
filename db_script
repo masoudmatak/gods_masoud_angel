@@ -101,15 +101,48 @@ contact_adress varchar(100), anmald_date datetime, description varchar(100));
 
 
 create table gods_category(id int primary key auto_increment, name varchar(100));
-insert into gods_category(name) values( 'TELEPHON');
-insert into gods_category(name) values( 'BÅT');
-insert into gods_category(name) values( 'BIL');
-insert into gods_category(name) values( 'HUS');
-insert into gods_category(name) values( 'CYCKEL');
-insert into gods_category(name) values( 'MOTOR');
-insert into gods_category(name) values( 'VITVAROR');
-
+insert into gods_category(id,name) values( 1,'TELEPHON');
+insert into gods_category(id,name) values(2, 'BÅT');
+insert into gods_category(id,name) values( 3,'BIL');
+insert into gods_category(id,name) values(4, 'HUS');
+insert into gods_category(id,name) values( 5,'CYCKEL');
+insert into gods_category(id,name) values( 6,'MOTOR');
+insert into gods_category(id,name) values( 7,'VITVAROR');
+insert into gods_category(id,name) values(8, 'KONST');
+insert into gods_category(id,name) values( 9,'SMYCKE');
+insert into gods_category(id,name) values( 10,'BÅTMOTOR');
+insert into gods_category(id,name) values( 11,'GRÄSSKLIPPARE');
+insert into gods_category(id,name) values( 12,'VAPEN');
+insert into gods_category(id,name) values(13, 'TRAKTOR');
+insert into gods_category(id,name) values( 14,'MATTOR');
+insert into gods_category(id,name) values(15, 'KYLSKÅP');
+insert into gods_category(id,name) values( 16,'DATOR');
+insert into gods_category(id,name) values(17, 'GULD_SMYCKE');
+insert into gods_category(id,name) values(18, 'SILVER_SMYCKE');
+insert into gods_category(id,name) values( 19,'PRINTER');
+insert into gods_category(id,name) values(20, 'TV');
+insert into gods_category(id,name) values( 21,'DATOR_SKÄRM');
+insert into gods_category(id,name) values( 1000,'EJ_DEFINERAD');
 /**********************/
+create table gods_undergategory(id int primary key auto_increment,name varchar(100),belongto int, 
+CONSTRAINT `undergategory_fk` FOREIGN KEY (`belongto`) REFERENCES `gods_category` (`id`));
+insert into gods_undergategory(name, belongto) values('BARNCYCKEL',5);
+insert into gods_undergategory(name, belongto) values('VUXENCYCKEL',5);
+
+
+insert into gods_undergategory(name, belongto) values('SEGELBÅT',1);
+insert into gods_undergategory(name, belongto) values('KAFFEBRYGARE',7);
+insert into gods_undergategory(name, belongto) values('OLJA_MÅLNING',8);
+insert into gods_undergategory(name, belongto) values('KRISTALL',8);
+
+/***************************/
+
+create table gods_attribute(id int primary key auto_increment, color varchar(20), weight_kg int, size varchar(100), brand varchar(50), belongto int,
+CONSTRAINT `attribute_fk` FOREIGN KEY (`belongto`) REFERENCES `gods` (`id`));
+insert into gods_attribute(color,  brand,belongto) values('BLACK','IPHONE', 1);
+insert into gods_attribute(color, weight_kg,size, brand,belongto) values('WHITE',200, '4*2', 'CROSSLAIR',2);
+
+/*************************************/
 
 create table gods_reports( id int primary key auto_increment, receiver varchar(50), 
 created datetime DEFAULT current_timestamp(), report_desc varchar(256), about_owner char(1) , about_gods char(1), answer varchar(256));
